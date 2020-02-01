@@ -1,0 +1,236 @@
+<!doctype html>
+<html class="no-js" lang="{{ app.request.locale }}">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="description" content="{% block description %}{% endblock %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/favicon.png') }}">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/themify-icons.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/nice-select.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/flaticon.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/gijgo.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/slick.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/slicknav.css') }}">
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <!-- <link rel="stylesheet" href="{{ asset('css/responsive.css') }}"> -->
+    {% endblock stylesheets %}
+</head>
+
+<body>
+<!--[if lte IE 9]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+<![endif]-->
+
+<!-- header-start -->
+<header>
+    <div class="header-area">
+        {% block header_top %}
+            <div class="header-top_area d-none d-lg-block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-5 col-md-5 ">
+                            <div class="header_left">
+                                <p>{{ 'app.header.title'|trans }}</p>
+                            </div>
+                        </div>
+                        <div class="col-xl-7 col-md-7">
+                            <div class="header_right d-flex">
+                                <div class="short_contact_list">
+                                    <ul>
+                                        <li>
+                                            <a href="mailto:{{ 'app.info.email'|trans }}">
+                                                <i class="fa fa-envelope"></i> {{ 'app.info.email'|trans }}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="tel:{{ 'app.info.phone'|trans }}">
+                                                <i class="fa fa-phone"></i> {{ 'app.info.phone'|trans }}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="social_media_links">
+                                    {% include '_social_media.html.twig' %}
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+        <div id="sticky-header" class="main-header-area">
+            <div class="container">
+                <div class="header_bottom_border">
+                    <div class="row align-items-center">
+                        <div class="col-xl-3 col-lg-2">
+                            <div class="logo">
+                                {# <a href="{{ url('app_homepage') }}"> #}
+                                <a href="{{ path('app_homepage') }}">
+                                    <img src="{{ asset('img/logo.png') }}" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-7">
+                            <div class="main-menu  d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        {% block main_menu %}
+                                            <a href="{{ path('app_home_about') }}">
+                                                {{ 'app.menu.about'|trans }}
+                                            </a>
+                                        {% endblock %}
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                            <div class="Appointment">
+                                {#<div class="search_btn">
+                                    <a href="#">
+                                        <i class="ti-search"></i>
+                                    </a>
+                                </div>#}
+                                <div class="book_btn d-none d-lg-block">
+                                    <a href="#">{{ 'app.header.property'|trans }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</header>
+<!-- header-end -->
+<!-- slider_area_start -->
+{% block slider %}
+
+<div class="slider_area">
+    <div class="single_slider  d-flex align-items-center slider_bg_1">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-xl-10 offset-xl-1">
+                    <div class="slider_text text-center justify-content-center">
+                        <h3>{{'app.slider.title'|trans }}</h3>
+                        <p>{{'app.slider.description'|trans }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+<!-- slider_area_end -->
+
+{% block content %}
+{% endblock %}
+
+<!-- contact_action_area  -->
+{% block contact %}
+<div class="contact_action_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-7">
+                <div class="action_heading">
+                    <h3>{{ 'app.contact.title'|trans }}</h3>
+                </div>
+            </div>
+            <div class="col-xl-5">
+                <div class="call_add_action">
+                    <span>{{ 'app.info.phone'|trans }}</span>
+                    <a href="#" class="boxed-btn3-line">{{'app.header.property'|trans}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+<!-- /contact_action_area  -->
+
+<!-- footer start -->
+{% block footer %}
+<footer class="footer">
+    <div class="footer_top">
+        <div class="container">
+            <div class="row">
+
+        </div>
+    </div>
+    <div class="copy-right_text">
+        <div class="container">
+            <div class="footer_border"></div>
+            <div class="row">
+                {% include '_footer_widget.html.twig' %}
+            </div>
+            </div>
+        </div>
+    </div>
+</footer>
+{% endblock %}
+
+<!--/ footer end  -->
+
+<!-- link that opens popup -->
+{% block javascripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+
+<script src=" https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"> </script>
+<!-- JS here -->
+<script src="{{asset('js/vendor/modernizr-3.5.0.min.js') }}"></script>
+<!-- <script src="{{asset('js/vendor/jquery-1.12.4.min.js') }}"></script> -->
+<script src="{{asset('js/popper.min.js') }}"></script>
+<script src="{{asset('js/bootstrap.min.js') }}"></script>
+<script src="{{asset('js/owl.carousel.min.js') }}"></script>
+<script src="{{asset('js/isotope.pkgd.min.js') }}"></script>
+<script src="{{asset('js/ajax-form.js') }}"></script>
+<script src="{{asset('js/waypoints.min.js') }}"></script>
+<script src="{{asset('js/jquery.counterup.min.js') }}"></script>
+<script src="{{asset('js/imagesloaded.pkgd.min.js') }}"></script>
+<script src="{{asset('js/scrollIt.js') }}"></script>
+<script src="{{asset('js/jquery.scrollUp.min.js') }}"></script>
+<script src="{{asset('js/wow.min.js') }}"></script>
+<script src="{{asset('js/nice-select.min.js') }}"></script>
+<script src="{{asset('js/jquery.slicknav.min.js') }}"></script>
+<script src="{{asset('js/jquery.magnific-popup.min.js') }}"></script>
+<script src="{{asset('js/plugins.js') }}"></script>
+<!-- <script src="{{asset('js/gijgo.min.js') }}"></script> -->
+<script src="{{asset('js/slick.min.js') }}"></script>
+
+
+
+<!--contact js-->
+<script src="{{asset('js/contact.js') }}"></script>
+<script src="{{asset('js/jquery.ajaxchimp.min.js') }}"></script>
+<script src="{{asset('js/jquery.form.js') }}"></script>
+<script src="{{asset('js/jquery.validate.min.js') }}"></script>
+<script src="{{asset('js/mail-script.js') }}"></script>
+
+
+<script src="{{asset('js/main.js') }}"></script>
+
+{% endblock %}
+</body>
+
+</html>

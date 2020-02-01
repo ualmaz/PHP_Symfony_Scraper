@@ -1,0 +1,20 @@
+app:
+  header:
+    title: "Мой первый сайт"
+    property: 'Добавить объявление'
+  info:
+    email: 'ualmaz@gmail.com'
+    phone: '+996 700 554-362'
+    address: 'Бишкек, Боконбаева 251 кв 85'
+  slider:
+    title: 'НЕДВИЖИМОСТЬ'
+    description: 'У нас есть все!!!'
+  contact:
+    title: 'Мы всегда на связи'
+  menu:
+    about: 'О Нас'
+  about:
+    title: 'Все о нас на этой странице'
+    heading: 'Мы можем все'
+    main_text: 'Мы можем все, все, все'
+    map: 'Мы находимся здесь'
