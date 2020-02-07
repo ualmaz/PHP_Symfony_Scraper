@@ -2,40 +2,44 @@
 
 namespace App\Command;
 
+use App\Entity\CrawlerLink;
+use App\Service\StrokaKgPostParser;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class CrawlerFetchCommand extends Command
 {
     protected static $defaultName = 'app:crawler:fetch';
+    protected $entityManager;
+    protected $parser;
+
+    public function __construct(ContainerInterface $container, StrokaKgPostParser $parser)
+    {
+        $this->entityManager = $container->get('doctrine.orm.entity_manager');
+        $this->parser = $parser;
+        parent::__construct(null);
+    }
 
     protected function configure()
     {
         $this
-            ->setDescription('Add a short description for your command')
-            ->addArgument('arg1', InputArgument::OPTIONAL, 'Argument description')
-            ->addOption('option1', null, InputOption::VALUE_NONE, 'Option description')
-        ;
+            ->setDescription('Вытягиваем по ссылкам посты');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
-        $arg1 = $input->getArgument('arg1');
-
-        if ($arg1) {
-            $io->note(sprintf('You passed an argument: %s', $arg1));
+        $limit = 1;
+        $links = $this->entityManager->getRepository(CrawlerLink::class)->findBy(['processed' => 0], null, $limit);
+        foreach ($links as $link) {
+            $post = $this->parser->fetchPost($link->getUrl());
         }
 
-        if ($input->getOption('option1')) {
-            // ...
-        }
-
-        $io->success('You have a new command! Now make it your own! Pass --help to see your options.');
 
         return 0;
     }
