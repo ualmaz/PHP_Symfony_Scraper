@@ -34,10 +34,16 @@ class CrawlerStartCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
-
         $client = new \Goutte\Client();
-        $mainUrl = 'https://stroka.kg/kupit-kvartiru/';
-        $this->getUrlFromPage($client, $mainUrl);
+
+        $this->entityManager->getRepository(CrawlerLink::class)->emptyTable();
+
+        for ($page =0; $page < 5; $page++) {
+            $mainUrl = 'https://stroka.kg/kupit-kvartiru/?p=' . $page;
+            $this->getUrlFromPage($client, $mainUrl);
+
+        }
+
 
         $io->success('Сбор данных успешно исполнен');
 

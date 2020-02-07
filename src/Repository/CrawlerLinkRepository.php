@@ -19,6 +19,15 @@ class CrawlerLinkRepository extends ServiceEntityRepository
         parent::__construct($registry, CrawlerLink::class);
     }
 
+    public function emptyTable()
+    {
+        $this
+            ->createQueryBuilder('cl')
+            -> delete()
+            -> getQuery()
+            -> execute();
+    }
+
     // /**
     //  * @return CrawlerLink[] Returns an array of CrawlerLink objects
     //  */
