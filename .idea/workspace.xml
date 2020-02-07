@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0bf1616a-fc5a-4967-afce-e40b8a8d08f4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Command/CrawlerStartCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Command/CrawlerStartCommand.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/CrawlerLinkRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/CrawlerLinkRepository.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,7 +164,7 @@
       <workItem from="1580200502630" duration="7911000" />
       <workItem from="1580541150359" duration="2804000" />
       <workItem from="1580543956261" duration="13418000" />
-      <workItem from="1581050059581" duration="4487000" />
+      <workItem from="1581050059581" duration="5629000" />
     </task>
     <servers />
   </component>
