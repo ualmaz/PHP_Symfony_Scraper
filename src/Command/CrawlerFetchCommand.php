@@ -34,11 +34,20 @@ class CrawlerFetchCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
-        $limit = 1;
-        $links = $this->entityManager->getRepository(CrawlerLink::class)->findBy(['processed' => 0], null, $limit);
-        foreach ($links as $link) {
-            $post = $this->parser->fetchPost($link->getUrl());
-        }
+        $limit = 100;
+        do {
+            /** @var CrawlerLink[] $links */
+            $links = $this->entityManager->getRepository(CrawlerLink::class)->findBy(['processed' => 0], null, $limit);
+            foreach ($links as $link) {
+                $post = $this->parser->fetchPost($link->getUrl());
+                $link->setProcessed(true);
+                $this->entityManager->persist($post);
+                $this->entityManager->flush();
+
+                $io->writeln('Создали новый пост по ссылке: ' . $link->getUrl());
+            }
+        } while (count($links) > 0);
+
 
 
         return 0;
