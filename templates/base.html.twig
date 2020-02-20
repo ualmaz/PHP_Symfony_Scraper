@@ -92,9 +92,16 @@
                                 <nav>
                                     <ul id="navigation">
                                         {% block main_menu %}
-                                            <a href="{{ path('app_home_about') }}">
-                                                {{ 'app.menu.about'|trans }}
-                                            </a>
+                                            <li>
+                                                <a href="{{ path('app_post') }}">
+                                                    {{ 'app.menu.post'| trans }}
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ path('app_home_about') }}">
+                                                    {{ 'app.menu.about'|trans }}
+                                                </a>
+                                            </li>
                                         {% endblock %}
                                     </ul>
                                 </nav>

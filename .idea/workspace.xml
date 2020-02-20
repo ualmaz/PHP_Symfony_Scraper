@@ -3,11 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="0bf1616a-fc5a-4967-afce-e40b8a8d08f4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Command/CrawlerFetchCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Command/CrawlerFetchCommand.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Command/CrawlerStartCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Command/CrawlerStartCommand.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Post.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/PostRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/PostRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/StrokaKgPostParser.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/StrokaKgPostParser.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/CronController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CronController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/translations/messages.ru.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/translations/messages.ru.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +145,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="Symfony2.SettingsForm" />
+    <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -171,7 +169,7 @@
       <workItem from="1580543956261" duration="13418000" />
       <workItem from="1581050059581" duration="13189000" />
       <workItem from="1581400665687" duration="18919000" />
-      <workItem from="1582180998107" duration="8726000" />
+      <workItem from="1582180998107" duration="15766000" />
     </task>
     <servers />
   </component>
@@ -179,21 +177,25 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="466" y="133" width="424" height="484" key="FileChooserDialogImpl" timestamp="1580543951885">
+    <state x="466" y="133" width="424" height="484" key="FileChooserDialogImpl" timestamp="1582199324661">
       <screen x="0" y="27" width="1366" height="698" />
     </state>
-    <state x="466" y="133" width="424" height="484" key="FileChooserDialogImpl/0.27.1366.698@0.27.1366.698" timestamp="1580543951885" />
+    <state x="466" y="133" width="424" height="484" key="FileChooserDialogImpl/0.27.1366.698@0.27.1366.698" timestamp="1582199324661" />
     <state x="393" y="188" width="569" height="373" key="NewPhpClassDialog" timestamp="1581063592835">
       <screen x="0" y="27" width="1366" height="698" />
     </state>
     <state x="393" y="188" width="569" height="373" key="NewPhpClassDialog/0.27.1366.698@0.27.1366.698" timestamp="1581063592835" />
-    <state x="172" y="27" width="1012" height="698" key="SettingsEditor" timestamp="1579937414391">
+    <state x="172" y="27" width="1012" height="698" key="SettingsEditor" timestamp="1582199281130">
       <screen x="0" y="27" width="1366" height="698" />
     </state>
-    <state x="172" y="27" width="1012" height="698" key="SettingsEditor/0.27.1366.698@0.27.1366.698" timestamp="1579937414391" />
+    <state x="172" y="27" width="1012" height="698" key="SettingsEditor/0.27.1366.698@0.27.1366.698" timestamp="1582199281130" />
     <state x="339" y="203" key="com.intellij.ide.util.TipDialog" timestamp="1579936888414">
       <screen x="0" y="27" width="1366" height="698" />
     </state>
     <state x="339" y="203" key="com.intellij.ide.util.TipDialog/0.27.1366.698@0.27.1366.698" timestamp="1579936888414" />
+    <state x="346" y="46" key="search.everywhere.popup" timestamp="1582202869802">
+      <screen x="0" y="27" width="1366" height="698" />
+    </state>
+    <state x="346" y="46" key="search.everywhere.popup/0.27.1366.698@0.27.1366.698" timestamp="1582202869802" />
   </component>
 </project>
