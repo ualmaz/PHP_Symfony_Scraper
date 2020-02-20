@@ -5,6 +5,7 @@ namespace App\Command;
 use App\Entity\CrawlerLink;
 use http\Client;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -38,7 +39,7 @@ class CrawlerStartCommand extends Command
 
         $this->entityManager->getRepository(CrawlerLink::class)->emptyTable();
 
-        for ($page =0; $page < 5; $page++) {
+        for ($page =0; $page < 1; $page++) {
             $mainUrl = 'https://stroka.kg/kupit-kvartiru/?p=' . $page;
             $this->getUrlFromPage($client, $mainUrl);
 
@@ -46,7 +47,11 @@ class CrawlerStartCommand extends Command
 
 
         $io->success('Сбор данных успешно исполнен');
-
+        $fetchName = CrawlerFetchCommand::getDefaultName();
+        $fetchCommand = $this->getApplication()->find($fetchName);
+        $fetchInput = new ArrayInput(['command' => $fetchName]);
+        $fetchCommand->run($fetchInput, $output);
+        $io->success('Обновление постов успешно выполнено.');
         return 0;
     }
 

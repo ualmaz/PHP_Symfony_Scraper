@@ -97,6 +97,11 @@ class Post
      */
     private $originalUrl;
 
+    /**
+     * @ORM\Column(type="boolean", options={"default"=1})
+     */
+    private $processed;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -290,6 +295,18 @@ class Post
     public function setOriginalUrl(string $originalUrl): self
     {
         $this->originalUrl = $originalUrl;
+
+        return $this;
+    }
+
+    public function getProcessed(): ?bool
+    {
+        return $this->processed;
+    }
+
+    public function setProcessed(bool $processed): self
+    {
+        $this->processed = $processed;
 
         return $this;
     }

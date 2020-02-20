@@ -32,9 +32,9 @@ class StrokaKgPostParser
         $this->client = new Client();
     }
 
-    public function fetchPost(string $url): Post
+    public function fetchPost(string $url, Post $post): Post
     {
-        $this->post = new Post();
+        $this->post = $post;
         $this->crawler = $this->client->request('GET', $url);
         $this
             ->executeTextData('setTitle', '.topic-best-view-name')
@@ -54,7 +54,7 @@ class StrokaKgPostParser
             ->executeDateData('setUpdatedAt', '.topic-view-topic_date_up')
             ->setUrl($url)
         ;
-    dump($this->post);
+//    dump($this->post);
 
         return $this->post;
     }
@@ -89,7 +89,7 @@ class StrokaKgPostParser
         $images = $this->crawler->filter('.topic-best-view-images-image');
         if ($images->count() > 0) {
             $imageStyle = $images->first()->attr('style');
-            dump($imageStyle);
+//            dump($imageStyle);
             if (preg_match('/https:\/\/[\w.\/]+/', $imageStyle, $matches)) {
                 call_user_func([$this->post, $setter], $matches[0]);
             }

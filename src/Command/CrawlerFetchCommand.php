@@ -3,6 +3,7 @@
 namespace App\Command;
 
 use App\Entity\CrawlerLink;
+use App\Entity\Post;
 use App\Service\StrokaKgPostParser;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -35,20 +36,39 @@ class CrawlerFetchCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
         $limit = 100;
+
+        $this->entityManager
+            ->getRepository(Post::class)
+            ->preparePostsBeforeParsing();
+
+
         do {
             /** @var CrawlerLink[] $links */
             $links = $this->entityManager->getRepository(CrawlerLink::class)->findBy(['processed' => 0], null, $limit);
             foreach ($links as $link) {
-                $post = $this->parser->fetchPost($link->getUrl());
+                $post = $this->entityManager
+                    ->getRepository(Post::class)
+                    ->findOneBy(['originalUrl' => $link->getUrl()]);
+
+                if (!$post) {
+                    $post = new Post();
+                    $this->entityManager->persist($post);
+                    $io->writeln('Создали новый пост по ссылке: ' . $link->getUrl());
+                } else {
+                    $io->writeln('Обновили пост по ссылке: ' . $link->getUrl());
+                }
+
+                $this->parser->fetchPost($link->getUrl(), $post);
+                $post->setProcessed(true);
                 $link->setProcessed(true);
-                $this->entityManager->persist($post);
+
                 $this->entityManager->flush();
 
-                $io->writeln('Создали новый пост по ссылке: ' . $link->getUrl());
+
             }
         } while (count($links) > 0);
 
-
+        $this->entityManager->getRepository(Post::class)->deleteOldPosts();
 
         return 0;
     }

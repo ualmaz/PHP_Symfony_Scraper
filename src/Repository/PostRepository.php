@@ -19,6 +19,29 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
+    public function preparePostsBeforeParsing()
+    {
+        $this
+            ->createQueryBuilder('p')
+            ->update()
+            ->set('p.processed', 0)
+            ->getQuery()
+            ->execute()
+        ;
+
+    }
+
+    public function deleteOldPosts()
+    {
+        $this
+            ->createQueryBuilder('p')
+            ->delete()
+            ->where('p.processed=0')
+            ->getQuery()
+            ->execute()
+            ;
+    }
+
     // /**
     //  * @return Post[] Returns an array of Post objects
     //  */
