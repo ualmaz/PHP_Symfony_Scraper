@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="bradcam_text text-center">
-                        <h3>{{ 'app.about.title'|trans }}</h3>
+                        <h3>{{ 'app.post.title'|trans }}</h3>
                     </div>
                 </div>
             </div>
@@ -20,5 +20,73 @@
     <!--/ bradcam_area  -->
 {% endblock %}
 
-{% block content %}{% endblock %}
+{% block content %}
+
+    <!--================Blog Area =================-->
+    <section class="blog_area section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mb-5 mb-lg-0">
+                    <div class="blog_left_sidebar">
+                        {% for post in posts %}
+                            <article class="blog_item">
+                            <div class="blog_item_img">
+                                <img class="card-img rounded-0" src="{{ post.thumbnail|default(asset('/img/house_placeholder.jpg')) }}" alt="">
+                                <a href="#" class="blog_item_date">
+                                    <h3>{{ post.updatedAt|date('d') }}</h3>
+                                    <p>{{ post.updatedAt|date('F') }}</p>
+                                </a>
+                            </div>
+
+                            <div class="blog_details">
+                                <a class="d-inline-block" href="{{ path('app_post_single', { id: post.id }) }}">
+                                    <h2>{{ post.title }}</h2>
+                                </a>
+
+                                <ul class="blog-info-link">
+                                    <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
+                                    <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                </ul>
+                            </div>
+                        </article>
+                        {% else %}
+                            <h3>{{ 'app.post.not_found'|trans }}</h3>
+                        {% endfor %}
+
+                        <nav class="blog-pagination justify-content-center d-flex">
+                            <ul class="pagination">
+                                {% if (page > 1) %}
+                                <li class="page-item">
+                                    <a href="{{ path('app_post', { page: page-1}) }}" class="page-link" aria-label="Previous">
+                                        <i class="ti-angle-left"></i>
+                                    </a>
+                                </li>
+                                {% endif %}
+                                {% for i in max(page-3, 1)..min(page+3, lastPage) %}
+                                    <li class="page-item {% if (i == page) %} active {% endif %}">
+                                        <a href="{{ path('app_post', {page: i }) }}" class="page-link">{{ i }}</a>
+                                    </li>
+                                {% endfor %}
+
+                                {% if(page < lastPage) %}
+                                <li class="page-item">
+                                    <a href="{{ path('app_post', {page: page+1}) }}" class="page-link" aria-label="Next">
+                                        <i class="ti-angle-right"></i>
+                                    </a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    {{ include('post/_sidebar.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================Blog Area =================-->
+
+
+{% endblock %}
 

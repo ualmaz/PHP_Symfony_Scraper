@@ -42,6 +42,18 @@ class PostRepository extends ServiceEntityRepository
             ;
     }
 
+    public function countPages(int $limit): int
+    {
+        $postCount = $this->createQueryBuilder('p')
+            ->select('COUNT(p)')
+            ->getQuery()
+            ->getScalarResult();
+
+        return $limit;
+
+
+    }
+
     // /**
     //  * @return Post[] Returns an array of Post objects
     //  */

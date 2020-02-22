@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block slider %}
+    <!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_about">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text text-center">
+                        <h3>{{ post.title }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+{% endblock %}
+
+{% block content %}
+    <!--================Blog Area =================-->
+    <section class="blog_area single-post-area section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 posts-list">
+                    <div class="single-post">
+                        <div class="feature-img">
+                            <img class="img-fluid" src="{{ post.thumbnail|default(asset('/img/house_placeholder.jpg')) }}" alt="">
+                        </div>
+                        <div class="blog_details">
+                            <h2>{{ post.title }}</h2>
+
+                            <div class="section-top-border">
+
+                                <div class="row">
+                                    <div class="col-7">
+                                        <ul class="unordered-list">
+                                            <li>Цена: {{ post.price }}$</li>
+                                            <li>Телефон: {{ post.phones|join(', ') }}</li>
+                                            <li>Комнат: {{ post.room }}</li>
+                                            <li>Отопление: {{ post.walls }}</li>
+                                            <li>Серия: {{ post.serias }}</li>
+                                            <li>Площадь: {{ post.area }} м <sup>2</sup></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="col-5">
+                                        <ul class="unordered-list">
+                                            <li>Этаж {{ post.floor }} из {{ post.floorOf }}</li>
+                                            {%  for option in post.options %}
+                                            <li>{{ option }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <p>{{ post.description|raw }}</p>
+                            <a class="btn btn-info" onclick="window.history.back();">Назад</a>
+                            {% if(post.geoloaction) %}
+                            <div id="map"
+                                 data-lat="{{ post.geoloaction.lat }}"
+                                 data-long="{{ post.geoloaction.long }}"
+                                 style="min-height: 400px;"></div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    {{ include('post/_sidebar.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ Blog Area end =================-->
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% if(post.geoloaction) %}
+    <script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
+    <script type="text/javascript">
+        var map;
+        var center = [{{ post.geoloaction.lat }}, {{ post.geoloaction.long }}];
+
+        DG.then(function () {
+            map = DG.map('map', {
+                center: center,
+                zoom: 16
+            });
+
+            DG.marker(center).addTo(map);
+        });
+    </script>
+    {% endif %}
+{% endblock %}
