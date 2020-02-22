@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Post;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * @method Post|null find($id, $lockMode = null, $lockVersion = null)
@@ -52,6 +53,38 @@ class PostRepository extends ServiceEntityRepository
         return $limit;
 
 
+    }
+
+    public function searchBy($searchData, $limit, $offset): array
+    {
+        $query = $this->buildSearchQuery($searchData);
+        $query
+            ->setMaxResults($limit)
+            ->setFirstResult($offset);
+
+        return $query->getQuery()->getResult();
+    }
+
+    public function countBy($searchData, $limit): int
+    {
+        $query = $this->buildSearchQuery($searchData);
+        $query->select('COUNT(p)');
+        $totalCount = $query->getQuery()->getSingleScalarResult();
+        return ceil($totalCount / $limit);
+
+    }
+
+    protected function buildSearchQuery($searchData): QueryBuilder
+    {
+        $qb = $this->createQueryBuilder('p');
+        if (!empty($searchData['search'])) {
+            $qb
+                ->where($qb->expr()->like('p.title', ':text'))
+                ->where($qb->expr()->like('p.description', ':text'))
+                ->setParameter('text', '%' . $searchData['search'] . '%')
+            ;
+        }
+        return $qb;
     }
 
     // /**

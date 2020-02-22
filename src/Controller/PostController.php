@@ -45,11 +45,23 @@ class PostController extends AbstractController
         return $this->render('post/single.html.twig', ['post' => $post]);
     }
 
-//    /**
-//     * @Route(path="/post/search" name="app_post_search")
-//     */
-    public function search(Request $request): Response
+    /**
+     * @Route(path="/post/search", name="app_post_search")
+    */
+    public function search(Request $request): \Symfony\Component\HttpFoundation\Response
     {
-        return $this->render('post/search.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $searchData = $request->query->all();
+        $page = $request->get('page', 1);
+        $posts = $em->getRepository(Post::class)
+            ->searchBy($searchData, 12, $page * 12 - 12);
+        $lastPage = $em->getRepository(Post::class)
+            ->countBy($searchData, 12);
+
+        return $this->render('post/search.html.twig', [
+            'posts' => $posts,
+            'page' => $page,
+            'lastPage' => $lastPage,
+        ]);
     }
 }

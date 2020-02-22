@@ -21,3 +21,8 @@ app:
     map: 'Мы находимся здесь'
   post:
     title: 'Все обьявления'
+  sidebar:
+    search:
+      placeholder: 'Ключевые слова'
+    button:
+      search: 'Поиск'
